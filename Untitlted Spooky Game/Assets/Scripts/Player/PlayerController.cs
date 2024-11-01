@@ -20,6 +20,12 @@ public class PlayerController : MonoBehaviour
     private float lookRotation; //keep track of current look rotation
     public float maxForce; //the max force that can be applied on the player
 
+    public float normalHeight = 2.0f;
+    public float crouchHeight = 1.0f;
+
+    public CapsuleCollider capsule;
+    private bool isCrouching = false;
+
 
     public void OnMove(InputAction.CallbackContext context)  
     {
@@ -39,6 +45,14 @@ public class PlayerController : MonoBehaviour
         else if (device is Gamepad)
         {
             currentSensitivity = controllerSensitivty; //if controller set the sensitivity to controller
+        }
+    }
+
+    public void OnCrouch(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            ToggleCrouch();
         }
     }
 
@@ -73,6 +87,23 @@ public class PlayerController : MonoBehaviour
         Vector3.ClampMagnitude(velocityChange, maxForce); //limit the force that can be added on the player  
         rb.AddForce(velocityChange, ForceMode.VelocityChange); //applies force to the rigidbody ignoring its mass
     }
+
+    private void ToggleCrouch()
+    {
+        if (isCrouching)
+        {
+            // Stand up
+            capsule.height = normalHeight;
+            isCrouching = false;
+        }
+        else
+        {
+            // Crouch down
+            capsule.height = crouchHeight;
+            isCrouching = true;
+        }
+    }
+
 
     void NormalLook()
     {

@@ -1,5 +1,5 @@
 {
-    "name": "Untitled Shaders Game",
+    "name": "Untitled Spooky Game",
     "maps": [
         {
             "name": "Player",
@@ -45,6 +45,15 @@
                     "name": "Skip",
                     "type": "Button",
                     "id": "aab2a81d-7aac-4fac-8f49-8e0d1e40a8f7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Crouch",
+                    "type": "Button",
+                    "id": "d11fe041-533e-44f4-9dfb-9e48ee0a9db7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -313,6 +322,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca9df51b-df80-4f33-84a4-4310b6d14cc5",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "51f3e796-5361-4d60-b097-82ed903a0fe7",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
