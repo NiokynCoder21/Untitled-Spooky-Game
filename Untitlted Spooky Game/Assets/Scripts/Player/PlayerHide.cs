@@ -9,6 +9,7 @@ public class PlayerHide : MonoBehaviour
     private bool isHidden = false;          // Tracks if the player is currently hiding
     public GameObject hideText; //the hide text
     public GameObject player; //the player game object
+    public GameObject hidingCam;
 
     public void OnHide(InputAction.CallbackContext context)
     {
@@ -20,7 +21,7 @@ public class PlayerHide : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("HidingSpot"))
+        if (other.CompareTag("Player"))
         {
             isNearHidingSpot = true;
             hideText.gameObject.SetActive(true);
@@ -29,7 +30,7 @@ public class PlayerHide : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("HidingSpot"))
+        if (other.CompareTag("Player"))
         {
             isNearHidingSpot = false;
             hideText.gameObject.SetActive(false);
@@ -43,6 +44,7 @@ public class PlayerHide : MonoBehaviour
         {
             // Exit hiding
             isHidden = false;
+            hidingCam.gameObject.SetActive(false);
             player.gameObject.SetActive(true);
         }
 
@@ -51,6 +53,7 @@ public class PlayerHide : MonoBehaviour
             // Enter hiding
             isHidden = true;
             player.gameObject.SetActive(false);
+            hidingCam.gameObject.SetActive(true);
         }
     }
 }
