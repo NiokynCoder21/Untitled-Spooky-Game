@@ -16,8 +16,11 @@ public class EnemyAi : MonoBehaviour
     private float timeSinceLastSighting = 0f; //float for time since last sighting
     public float rotationSpeed; //how fast the enemy rotates 
 
-    public Transform detectionObjects; 
-    private Vector3 lastknownPlayerPosition; 
+    private Vector3 lastknownPlayerPosition;
+
+    public Transform eyePosition; // Assign this to the point where you want the enemy to "see" from
+    public float fieldOfViewAngle = 60f;
+    public bool reachedWaypoint = false;
 
     public enum EnemyState
     {
@@ -36,6 +39,7 @@ public class EnemyAi : MonoBehaviour
         SetNextWaypoint(); //calls the newway point function
         AudioSource audio = GetComponent<AudioSource>(); //get audio component 
         GameObject.FindGameObjectWithTag("Player"); //get gameobject with tag player
+        agent.updateRotation = false;
     }
 
     void Update()
@@ -70,7 +74,7 @@ public class EnemyAi : MonoBehaviour
         {
             if (agent.remainingDistance < 0.5f) //if the player is close to the waypoint set the next waypoint 
             {
-              SetNextWaypoint();
+                SetNextWaypoint();
             }  
            
         }
@@ -94,6 +98,10 @@ public class EnemyAi : MonoBehaviour
     {
         if (CanSeePlayer()) ////if can see the player is yes
         {
+            Vector3 directionToPlayer = (player.position - transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
             lastknownPlayerPosition = player.position; //last known position is the players current position
             timeSinceLastSighting = 0f;
             currentState = EnemyState.Chase; //if the player seen then the enemy enters chase state
@@ -120,20 +128,31 @@ public class EnemyAi : MonoBehaviour
 
     void MoveTowardsLastKnownPosition()
     {
-        agent.destination = lastknownPlayerPosition; //moves enemy to last known position
+        // Set the agent's destination to the last known player position
+        agent.destination = lastknownPlayerPosition;
 
-        Vector3 directionToPlayer = (lastknownPlayerPosition - transform.position).normalized;
+        // Check if the agent is moving to avoid unnecessary rotation
+        if (agent.velocity.sqrMagnitude > 0.01f)
+        {
+            // Calculate the direction to the last known position
+            Vector3 directionToMove = agent.velocity.normalized;
 
-        // Calculate the target rotation based on the direction vector
-        Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+            // Calculate the target rotation to face the movement direction
+            Quaternion targetRotation = Quaternion.LookRotation(directionToMove);
 
-        // Interpolate between the current rotation and the target rotation
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            // Rotate smoothly, allowing a full 180-degree turn if needed
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        }
     }
+
     void ChaseUpdate()
     {  
         if (CanSeePlayer()) //if can see the player is yes
         {
+            Vector3 directionToPlayer = (player.position - transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
             currentState = EnemyState.Chase; //change current state to chase
             agent.destination = player.position; //set enemy desitination to player position
         }
@@ -144,42 +163,64 @@ public class EnemyAi : MonoBehaviour
         }
     }
 
-  
+
 
     bool CanSeePlayer()
     {
-        Vector3 direction = player.position - transform.position; //this is the direction the enemy is facing , is calculated using a vector from the enemy to the player
-        float distanceToPlayer = direction.magnitude; //calculates the distance from enemy to player using a staright line
+        Vector3 directionToPlayer = player.position - eyePosition.position;
+        float distanceToPlayer = directionToPlayer.magnitude;
 
-        int layerMask = 8 << LayerMask.NameToLayer("Walls");
-        layerMask = ~layerMask; //exclude wall layer
+        int layerMask = 1 << LayerMask.NameToLayer("Walls"); // Only wall layer
+        layerMask = ~layerMask; // Exclude wall layer for raycast
 
-
-        if (distanceToPlayer <= detectionRange) //checks if the player is within the detection range
+        // Check if player is within detection range
+        if (distanceToPlayer <= detectionRange)
         {
+            // Check if player is within field of view angle
+            float angleToPlayer = Vector3.Angle(eyePosition.forward, directionToPlayer);
 
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, direction.normalized, out hit, detectionRange, layerMask) && hit.collider.CompareTag("Player")) //shoots a raycast from the enemy position in the direction of the player to see if it hit anything and stores it in hit
+            if (angleToPlayer <= fieldOfViewAngle / 2) // Divide by 2 to get a symmetrical cone
             {
-                return true; //if raycast hit player true
+                // Perform raycast from eye position in the direction of the player
+                RaycastHit hit;
+                if (Physics.Raycast(eyePosition.position, directionToPlayer.normalized, out hit, detectionRange, layerMask) && hit.collider.CompareTag("Player"))
+                {
+                    return true; // Enemy can see the player
+                }
             }
         }
- 
-        return false; //enemy cannot see the player
+
+        return false; // Enemy cannot see the player
     }
 
     void SetNextWaypoint()
     {
-        if (patrolWaypoints.Count == 0) //checks if no waypoints are assigned
+        if (patrolWaypoints.Count == 0)
         {
-            Debug.LogError("No patrol waypoints assigned!"); //if yes then prints to consolse and returns
+            Debug.LogError("No patrol waypoints assigned!");
             return;
         }
 
-            agent.destination = patrolWaypoints[currentWaypointIndex].position; //makes the enemy move towards its current waypoint
+        // If the enemy has just arrived at a waypoint
+        if (!reachedWaypoint)
+        {
+            // Set a flag indicating the enemy has now reached a waypoint
+            reachedWaypoint = true;
+
+            // Perform a 180-degree turn
+            transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y + 180, 0);
+        }
+        else
+        {
+            // Move to the next waypoint
+            agent.destination = patrolWaypoints[currentWaypointIndex].position;
+
+            // Reset the reachedWaypoint flag
+            reachedWaypoint = false;
 
             // Increment index for the next waypoint
-            currentWaypointIndex = (currentWaypointIndex + 1) % patrolWaypoints.Count; //this ensure that after the last waypoint the enemy will loop back to the first waypoint assigned 
+            currentWaypointIndex = (currentWaypointIndex + 1) % patrolWaypoints.Count;
+        }
 
     }
 
