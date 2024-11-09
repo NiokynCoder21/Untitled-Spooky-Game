@@ -10,6 +10,8 @@ public class PlayerHide : MonoBehaviour
     public GameObject hideText; //the hide text
     public GameObject player; //the player game object
     public GameObject hidingCam;
+    public PlayerController controller;
+    public GameObject killText;
 
     public void OnHide(InputAction.CallbackContext context)
     {
@@ -35,6 +37,7 @@ public class PlayerHide : MonoBehaviour
             isNearHidingSpot = false;
             hideText.gameObject.SetActive(false);
         }
+
     }
 
 

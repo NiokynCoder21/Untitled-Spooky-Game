@@ -25,7 +25,10 @@ public class PlayerController : MonoBehaviour
 
     public CapsuleCollider capsule;
     private bool isCrouching = false;
-
+    public EnemyAi ai;
+    public bool enemyTurned = false;
+    public PlayerEnegy energy;
+    public float gainAmount;
 
     public void OnMove(InputAction.CallbackContext context)  
     {
@@ -56,6 +59,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void onVampireBite(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Bite();
+        }
+    }
+
     //Potato Code. (2022, May 15). How to Make a Rigidbody Player Controller with Unity's Input System[Video]. Youtube. https://www.youtube.com/watch?v=1LtePgzeqjQ
 
     private void FixedUpdate()
@@ -71,6 +82,14 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked; //locks the cursor when the game begins
         Cursor.visible = false; //ensure the cursor is not visible 
+    }
+
+    public void Bite()
+    {
+        if (enemyTurned == true)
+        {
+            energy.GainEnergy(gainAmount);
+        }
     }
 
     private void Move()
@@ -127,5 +146,8 @@ public class PlayerController : MonoBehaviour
         grounded = state;
     }
 
-  
+    public void SetEnemyTurned(bool state) //this is used to allow me to check for grounded in a collsion script
+    {
+        enemyTurned = state;
+    }
 }

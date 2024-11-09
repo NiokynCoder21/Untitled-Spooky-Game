@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HandTorch
   - Wall
+  - EnemyBack
   layers:
   - Default
   - TransparentFX
