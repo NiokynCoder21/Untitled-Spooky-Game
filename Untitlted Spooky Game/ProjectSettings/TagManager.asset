@@ -8,6 +8,8 @@ TagManager:
   - Wall
   - EnemyBack
   - Enemy
+  - Rabbit
+  - Rat
   layers:
   - Default
   - TransparentFX

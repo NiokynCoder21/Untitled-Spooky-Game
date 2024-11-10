@@ -6,6 +6,7 @@ public class Kill : MonoBehaviour
 {
     public PlayerController controller;
     public GameObject killText;
+    public GameObject player;
 
     public void OnTriggerEnter(Collider other)
     {
@@ -37,6 +38,18 @@ public class Kill : MonoBehaviour
                     }
                 }
             }
+        }
+
+        if (other.CompareTag("Rat"))
+        {
+            Rat rat = new Rat();
+            rat.ApplyEffect(player);
+        }
+
+        if (other.CompareTag("Rabbit"))
+        {
+            Rabbit rabbit = new Rabbit();
+            rabbit.ApplyEffect(player);
         }
     }
 
