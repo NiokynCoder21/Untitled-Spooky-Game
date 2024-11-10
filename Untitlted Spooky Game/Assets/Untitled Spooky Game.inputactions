@@ -58,6 +58,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Ghost",
+                    "type": "Button",
+                    "id": "f4e5eced-7314-4fc4-b72c-b17cc5b97caa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Invisble",
+                    "type": "Button",
+                    "id": "cd8a9376-ae66-4fbf-96ce-4ad4f47b14fd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -289,6 +307,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Kill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0b086c2d-7475-46e2-8872-b1dba9a6cb86",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ghost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "09f40ba4-bcd7-4451-b68e-d20e768f19af",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Invisble",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
