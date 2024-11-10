@@ -25,10 +25,11 @@ public class PlayerController : MonoBehaviour
 
     public CapsuleCollider capsule;
     private bool isCrouching = false;
-    public EnemyAi ai;
     public bool enemyTurned = false;
     public PlayerEnegy energy;
     public float gainAmount;
+    public float lossAmount;
+    public bool hasKilled = false;
 
     public void OnMove(InputAction.CallbackContext context)  
     {
@@ -77,7 +78,14 @@ public class PlayerController : MonoBehaviour
         }        
     }
 
-   
+    public void Update()
+    {
+        if (energy != null)
+        {
+            energy.LossEnergy(lossAmount);
+        }
+    }
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked; //locks the cursor when the game begins
@@ -89,6 +97,7 @@ public class PlayerController : MonoBehaviour
         if (enemyTurned == true)
         {
             energy.GainEnergy(gainAmount);
+            hasKilled = true;
         }
     }
 
