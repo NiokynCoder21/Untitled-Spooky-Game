@@ -10,6 +10,7 @@ public class PlayerEnegy : MonoBehaviour
     public float maxEnergy = 200; //max health in the game
     public float currentEnergy; //current health in the game
     public HealthBars healthBar; //reference to the healthBar game object
+    public AudioClip bloodDrinkSound;
 
     void Start()
     {
@@ -25,7 +26,7 @@ public class PlayerEnegy : MonoBehaviour
 
         if (currentEnergy <= 0) //if current energy is less than or equal to zero
         {
-            SceneManager.LoadScene("SampleScene", LoadSceneMode.Single); //load the game over screen
+            SceneManager.LoadScene("Lose", LoadSceneMode.Single); //load the game over screen
         }
     }
 
@@ -33,6 +34,9 @@ public class PlayerEnegy : MonoBehaviour
     {
         currentEnergy += energy; //this increases energy from current energy and assigns the current energy
         healthBar.SetHealth(currentEnergy); //set healthbar to current energy
+        AudioSource audio = GetComponent<AudioSource>(); //get component audio source and store as audio
+        audio.clip = bloodDrinkSound;
+        audio.Play();
     }
 
     //Brakeys.(2020, Febuary 9). How to make a Health bar in Unity![Video] https://www.youtube.com/watch?v=BLfNP4Sc_iA&list=PLt1E2jJc5nDj6KQi6BVJElz3vqFmg-B8I&index=4 
