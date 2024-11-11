@@ -10,7 +10,7 @@ public class PlayerEnegy : MonoBehaviour
     public float maxEnergy = 200; //max health in the game
     public float currentEnergy; //current health in the game
     public HealthBars healthBar; //reference to the healthBar game object
-    public AudioClip bloodDrinkSound;
+    public AudioClip bloodDrinkSound; //this is the audio clip for when the player eats
 
     void Start()
     {
@@ -26,7 +26,7 @@ public class PlayerEnegy : MonoBehaviour
 
         if (currentEnergy <= 0) //if current energy is less than or equal to zero
         {
-            SceneManager.LoadScene("Lose", LoadSceneMode.Single); //load the game over screen
+            SceneManager.LoadScene("SampleScene", LoadSceneMode.Single); //load the game over screen
         }
     }
 
@@ -34,7 +34,7 @@ public class PlayerEnegy : MonoBehaviour
     {
         AudioSource audio = GetComponent<AudioSource>(); //get component audio source and store as audio
         audio.clip = bloodDrinkSound;
-        audio.Play();
+        audio.Play(); //play the auido clip
         currentEnergy += energy; //this increases energy from current energy and assigns the current energy
         healthBar.SetHealth(currentEnergy); //set healthbar to current energy
     }

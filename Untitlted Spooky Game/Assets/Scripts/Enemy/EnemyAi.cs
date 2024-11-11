@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class EnemyAi : MonoBehaviour
 {
   
-    public Transform player;
+    public Transform player; //player transform
     public float detectionRange; // Range to detect the player
     public List<Transform> patrolWaypoints; // List of patrol waypoints
     private NavMeshAgent agent; //the nav mesh agent
@@ -19,8 +19,8 @@ public class EnemyAi : MonoBehaviour
     private Vector3 lastknownPlayerPosition;
 
     public Transform eyePosition; // Assign this to the point where you want the enemy to "see" from
-    public float fieldOfViewAngle = 60f;
-    public bool reachedWaypoint = false;
+    public float fieldOfViewAngle = 60f; //the abgle the enemy can see
+    public bool reachedWaypoint = false; //to chekc if the enemy has reached a waypoint to rotate them
 
     public enum EnemyState
     {
@@ -39,7 +39,7 @@ public class EnemyAi : MonoBehaviour
         SetNextWaypoint(); //calls the newway point function
         AudioSource audio = GetComponent<AudioSource>(); //get audio component 
         GameObject.FindGameObjectWithTag("Player"); //get gameobject with tag player
-        agent.updateRotation = false;
+        agent.updateRotation = false; //this allows me to control roatation
     }
 
     void Update()
@@ -202,25 +202,21 @@ public class EnemyAi : MonoBehaviour
             return;
         }
 
-        // If the enemy has just arrived at a waypoint
-        if (!reachedWaypoint)
+        
+        if (!reachedWaypoint) // If the enemy has just arrived at a waypoint
         {
-            // Set a flag indicating the enemy has now reached a waypoint
-            reachedWaypoint = true;
+            reachedWaypoint = true; // the enemy has reached the waypoint
 
-            // Perform a 180-degree turn
-            transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y + 180, 0);
+
+            transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y + 180, 0); // Rotate by 180 degrees
         }
         else
         {
-            // Move to the next waypoint
-            agent.destination = patrolWaypoints[currentWaypointIndex].position;
+            agent.destination = patrolWaypoints[currentWaypointIndex].position; // Move to the next waypoint
 
-            // Reset the reachedWaypoint flag
-            reachedWaypoint = false;
+            reachedWaypoint = false;  // Reset the reachedWaypoint flag
 
-            // Increment index for the next waypoint
-            currentWaypointIndex = (currentWaypointIndex + 1) % patrolWaypoints.Count;
+            currentWaypointIndex = (currentWaypointIndex + 1) % patrolWaypoints.Count; // Increment index for the next waypoint
         }
 
     }

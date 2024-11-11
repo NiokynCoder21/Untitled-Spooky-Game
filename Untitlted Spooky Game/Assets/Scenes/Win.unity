@@ -1281,13 +1281,13 @@ MonoBehaviour:
     m_ActionName: Player/Invisble[/Keyboard/f]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1611120485}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1611120489}
+        m_TargetAssemblyTypeName: Restart, Assembly-CSharp
+        m_MethodName: onMainMenu
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1335,6 +1335,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 3b326fec-a783-44e2-977a-93bebbfd6411
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 79bd5dc8-4039-46d5-81ad-83bb478cda08
+    m_ActionName: Player/StartGame[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 31691c3a-7986-4814-9b88-9fbb96255d28
+    m_ActionName: Player/QuitGame[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 86b41912-710a-47ea-9590-71e8945e8182
+    m_ActionName: Player/Continue[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

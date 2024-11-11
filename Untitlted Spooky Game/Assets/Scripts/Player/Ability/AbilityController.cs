@@ -5,13 +5,12 @@ using UnityEngine.InputSystem;
 
 public class AbilityController : MonoBehaviour
 {
-    public bool isGhost = false;
-    public bool isInvisble = false;
-    public GameObject detectionObject;
-    public GameObject invisibleText;
-    public GameObject normalMode;
-    public GameObject ghostMode;
-    public GameObject invisibleMode;
+    public bool isGhost = false; //is the ability active
+    public bool isInvisble = false; //is the ability active
+    public GameObject detectionObject; //in my game detection works using trigger enter game object so i disbale it to make the player invisible
+    public GameObject normalMode; //this is for post processing
+    public GameObject ghostMode; //this is for post processing
+    public GameObject invisibleMode; //this is for post processing
 
     public void onGhostAbility(InputAction.CallbackContext context)
     {
@@ -68,7 +67,7 @@ public class AbilityController : MonoBehaviour
         }
     }
 
-    public void InvisibleAbilityUse()
+    public void InvisibleAbilityUse() //ability activate
     {
         InvisibleAbility invisibility = new InvisibleAbility();
         invisibility.Activate(gameObject);
@@ -76,7 +75,7 @@ public class AbilityController : MonoBehaviour
         normalMode.gameObject.SetActive(false);
         invisibleMode.gameObject.SetActive(true);
     }
-    public void InvisibleAbilityNotUse()
+    public void InvisibleAbilityNotUse() //ability deactive
     {
         InvisibleAbility invisibility = new InvisibleAbility();
         invisibility.Disable(gameObject);
@@ -85,7 +84,7 @@ public class AbilityController : MonoBehaviour
         invisibleMode.gameObject.SetActive(false);
     }
 
-    public void GhostAbilityUse()
+    public void GhostAbilityUse() //ability activate
     {
         GhostAbility ghost = new GhostAbility();
         ghost.Activate(gameObject);
@@ -93,7 +92,7 @@ public class AbilityController : MonoBehaviour
         ghostMode.gameObject.SetActive(true);
     }
 
-    public void GhostAbilityNotUse()
+    public void GhostAbilityNotUse() //ability deactive
     {
         GhostAbility ghost = new GhostAbility();
         ghost.Disable(gameObject);

@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Rabbit : Food
 {
-    public Rabbit() : base(energy: 25f) { }
+    public Rabbit() : base(energy: 50f) { } //this sets the energy for this item
 
-    public override void ApplyEffect(GameObject player)
+    public override void ApplyEffect(GameObject player) //gets the base function from the food script
     {
         base.ApplyEffect(player);
-        print("rabbit eaten");
     }
 }

@@ -20,16 +20,16 @@ public class PlayerController : MonoBehaviour
     private float lookRotation; //keep track of current look rotation
     public float maxForce; //the max force that can be applied on the player
 
-    public float normalHeight = 2.0f;
-    public float crouchHeight = 1.0f;
+   // public float normalHeight = 2.0f;
+   // public float crouchHeight = 1.0f;
 
-    public CapsuleCollider capsule;
-    private bool isCrouching = false;
-    public bool enemyTurned = false;
-    public PlayerEnegy energy;
-    public float gainAmount;
-    public float lossAmount;
-    public bool hasKilled = false;
+   // public CapsuleCollider capsule;
+   // private bool isCrouching = false;
+    public bool enemyTurned = false; //this is to check where the player can bite or not
+    public PlayerEnegy energy; //reference to player energy script
+    public float gainAmount; //how energy they get
+    public float lossAmount; //how much energy they lose
+    public bool hasKilled = false; //this to keep track on if the enemy has been killed or not
 
     public void OnMove(InputAction.CallbackContext context)  
     {
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
     {
         if (energy != null)
         {
-            energy.LossEnergy(lossAmount);
+            energy.LossEnergy(lossAmount); //reduces energy each frame to simulate blood loss for player
         }
     }
 
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
     {
         if (enemyTurned == true)
         {
-            energy.GainEnergy(gainAmount);
+            energy.GainEnergy(gainAmount); //increase player energy
             hasKilled = true;
         }
     }
@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
         grounded = state;
     }
 
-    public void SetEnemyTurned(bool state) //this is used to allow me to check for grounded in a collsion script
+    public void SetEnemyTurned(bool state) //this is used to allow me to set bool enemyturned in collsion script 
     {
         enemyTurned = state;
     }

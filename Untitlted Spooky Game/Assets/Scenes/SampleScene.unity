@@ -5073,6 +5073,7 @@ MonoBehaviour:
   halfDoorRightTransform: {fileID: 633369333}
   slideDistance: 0.88
   speed: 1
+  closeDelay: 2
   doorOpeningSoundClip: {fileID: 8300000, guid: 80d08fa5dccc64ffa90d6734ce03512e,
     type: 3}
   doorClosingSoundClip: {fileID: 8300000, guid: 4547fb4d1627d4ce6acc55af375f84f4,
@@ -36380,7 +36381,7 @@ GameObject:
   - component: {fileID: 531053608}
   m_Layer: 0
   m_Name: WinTrigger
-  m_TagString: Win
+  m_TagString: Winner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40752,6 +40753,7 @@ MonoBehaviour:
   halfDoorRightTransform: {fileID: 1570044610}
   slideDistance: 0.88
   speed: 1
+  closeDelay: 2
   doorOpeningSoundClip: {fileID: 8300000, guid: 80d08fa5dccc64ffa90d6734ce03512e,
     type: 3}
   doorClosingSoundClip: {fileID: 8300000, guid: 4547fb4d1627d4ce6acc55af375f84f4,
@@ -42840,6 +42842,7 @@ MonoBehaviour:
   halfDoorRightTransform: {fileID: 1986089471}
   slideDistance: 0.88
   speed: 1
+  closeDelay: 2
   doorOpeningSoundClip: {fileID: 8300000, guid: 80d08fa5dccc64ffa90d6734ce03512e,
     type: 3}
   doorClosingSoundClip: {fileID: 8300000, guid: 4547fb4d1627d4ce6acc55af375f84f4,
@@ -103700,6 +103703,7 @@ MonoBehaviour:
   halfDoorRightTransform: {fileID: 581789817}
   slideDistance: 0.88
   speed: 1
+  closeDelay: 2
   doorOpeningSoundClip: {fileID: 8300000, guid: 80d08fa5dccc64ffa90d6734ce03512e,
     type: 3}
   doorClosingSoundClip: {fileID: 8300000, guid: 4547fb4d1627d4ce6acc55af375f84f4,
@@ -105976,6 +105980,7 @@ MonoBehaviour:
   halfDoorRightTransform: {fileID: 1243904714}
   slideDistance: 0.88
   speed: 0.5
+  closeDelay: 2
   doorOpeningSoundClip: {fileID: 8300000, guid: 80d08fa5dccc64ffa90d6734ce03512e,
     type: 3}
   doorClosingSoundClip: {fileID: 8300000, guid: 4547fb4d1627d4ce6acc55af375f84f4,
@@ -113279,6 +113284,7 @@ MonoBehaviour:
   halfDoorRightTransform: {fileID: 301970965}
   slideDistance: 0.88
   speed: 1
+  closeDelay: 2
   doorOpeningSoundClip: {fileID: 8300000, guid: 80d08fa5dccc64ffa90d6734ce03512e,
     type: 3}
   doorClosingSoundClip: {fileID: 8300000, guid: 4547fb4d1627d4ce6acc55af375f84f4,
@@ -136893,6 +136899,7 @@ MonoBehaviour:
   halfDoorRightTransform: {fileID: 404478447}
   slideDistance: 0.88
   speed: 1
+  closeDelay: 2
   doorOpeningSoundClip: {fileID: 8300000, guid: 80d08fa5dccc64ffa90d6734ce03512e,
     type: 3}
   doorClosingSoundClip: {fileID: 8300000, guid: 4547fb4d1627d4ce6acc55af375f84f4,
@@ -156102,6 +156109,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: cd8a9376-ae66-4fbf-96ce-4ad4f47b14fd
     m_ActionName: Player/Invisble[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0c95adf4-d856-4643-a436-180c754e449d
+    m_ActionName: Player/MainMenu[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 79bd5dc8-4039-46d5-81ad-83bb478cda08
+    m_ActionName: Player/StartGame[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 31691c3a-7986-4814-9b88-9fbb96255d28
+    m_ActionName: Player/QuitGame[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 86b41912-710a-47ea-9590-71e8945e8182
+    m_ActionName: Player/Continue[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

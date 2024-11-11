@@ -5,38 +5,36 @@ using UnityEngine.SceneManagement;
 
 public class Kill : MonoBehaviour
 {
-    public PlayerController controller;
-    public GameObject killText;
-    public GameObject player;
+    public PlayerController controller; //reference to player contrller script
+    public GameObject killText; //text that says what to press to kill
+    public GameObject player; //this is the object with the player energy script
 
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("EnemyBack"))
+        if (other.CompareTag("EnemyBack")) //when collides with game object with enemy back tag 
         {
-            killText.gameObject.SetActive(true);
+            killText.gameObject.SetActive(true); //show kill text
 
             if (controller != null)
             {
-                controller.SetEnemyTurned(true);
+                controller.SetEnemyTurned(true); //the player is behind the enemy
 
                 if (controller.hasKilled == true)
                 {
-                    controller.hasKilled = false;
-                    killText.gameObject.SetActive(false);
+                    controller.hasKilled = false; //the enemy is now dead
+                    killText.gameObject.SetActive(false); //hide kill text
 
-                    Transform enemyParent = other.transform;
-
-                    // Traverse up the hierarchy until we reach an object tagged as "Enemy"
-                    while (enemyParent != null && !enemyParent.CompareTag("Enemy"))
+                    Transform enemyParent = other.transform; 
+                   
+                    while (enemyParent != null && !enemyParent.CompareTag("Enemy"))  //Go up the hiercrachy until it reaches a gameobject enemy
                     {
-                        enemyParent = enemyParent.parent;
+                        enemyParent = enemyParent.parent; //this game object found is the enemy parent
                     }
-
-                    // If we found an enemy parent, destroy it
-                    if (enemyParent != null)
+  
+                    if (enemyParent != null) 
                     {
-                        Destroy(enemyParent.gameObject); // Destroy the specific enemy object, e.g., Enemy 3
+                        Destroy(enemyParent.gameObject); // Destroy the game object
                     }
                 }
             }
@@ -45,46 +43,42 @@ public class Kill : MonoBehaviour
         if (other.CompareTag("Rat"))
         {
             Rat rat = new Rat();
-            rat.ApplyEffect(player);
+            rat.ApplyEffect(player); //this increases player energy
 
             Transform ratParent = other.transform;
 
-            // Traverse up the hierarchy until we reach an object tagged as "Enemy"
-            while (ratParent != null && !ratParent.CompareTag("RatDad"))
+            while (ratParent != null && !ratParent.CompareTag("RatDad")) //Go up the hiercrachy until it reaches a gameobject rat
             {
                 ratParent = ratParent.parent;
             }
 
-            // If we found an enemy parent, destroy it
             if (ratParent != null)
             {
-                Destroy(ratParent.gameObject); // Destroy the specific enemy object, e.g., Enemy 3
+                Destroy(ratParent.gameObject); // Destroy the game object
             }
         }
 
         if (other.CompareTag("Rabbit"))
         {
             Rabbit rabbit = new Rabbit();
-            rabbit.ApplyEffect(player);
+            rabbit.ApplyEffect(player); //this increases player energy
 
             Transform rabbitParent = other.transform;
 
-            // Traverse up the hierarchy until we reach an object tagged as "Enemy"
-            while (rabbitParent != null && !rabbitParent.CompareTag("RabbitDad"))
+            while (rabbitParent != null && !rabbitParent.CompareTag("RabbitDad")) //Go up the hiercrachy until it reaches a gameobject rabbit
             {
                 rabbitParent = rabbitParent.parent;
             }
 
-            // If we found an enemy parent, destroy it
             if (rabbitParent != null)
             {
-                Destroy(rabbitParent.gameObject); // Destroy the specific enemy object, e.g., Enemy 3
+                Destroy(rabbitParent.gameObject); // Destroy the game object
             }
         }
 
         if (other.CompareTag("Winner"))
         {
-            SceneManager.LoadScene("Win", LoadSceneMode.Single);
+            SceneManager.LoadScene("Win", LoadSceneMode.Single); //this will transition the game to win scence
         }
     }
 
@@ -96,21 +90,19 @@ public class Kill : MonoBehaviour
             {
                 if (controller.hasKilled == true)
                 {
-                    controller.hasKilled = false;
-                    killText.gameObject.SetActive(false);
+                    controller.hasKilled = false; //the enemy is now dead
+                    killText.gameObject.SetActive(false); //hide kill text
 
                     Transform enemyParent = other.transform;
 
-                    // Traverse up the hierarchy until we reach an object tagged as "Enemy"
-                    while (enemyParent != null && !enemyParent.CompareTag("Enemy"))
+                    while (enemyParent != null && !enemyParent.CompareTag("Enemy"))  //Go up the hiercrachy until it reaches a gameobject enemy
                     {
                         enemyParent = enemyParent.parent;
                     }
 
-                    // If we found an enemy parent, destroy it
                     if (enemyParent != null)
                     {
-                        Destroy(enemyParent.gameObject); // Destroy the specific enemy object, e.g., Enemy 3
+                        Destroy(enemyParent.gameObject);
                     }
                 }
             }
@@ -121,11 +113,11 @@ public class Kill : MonoBehaviour
     {
         if (other.CompareTag("EnemyBack"))
         {
-            killText.gameObject.SetActive(false);
+            killText.gameObject.SetActive(false); //disable kill text
 
             if (controller != null)
             {
-                controller.SetEnemyTurned(false);
+                controller.SetEnemyTurned(false); //the player is not behind the enemy
             }
         }
     }

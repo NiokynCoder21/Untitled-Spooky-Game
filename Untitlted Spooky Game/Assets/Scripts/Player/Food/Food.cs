@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-    protected float energyCost; // Energy cost unique to each ability
-
-    // The method that will be called when the player collects this item
+    protected float energyCost; // this is the energy amount for each kind of food
 
     public Food(float energy)
     {

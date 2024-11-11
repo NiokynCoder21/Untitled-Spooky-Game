@@ -2049,6 +2049,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 3b326fec-a783-44e2-977a-93bebbfd6411
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1172166768}
+        m_TargetAssemblyTypeName: Restart, Assembly-CSharp
+        m_MethodName: onContinue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 86b41912-710a-47ea-9590-71e8945e8182
+    m_ActionName: Player/Continue[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ability : MonoBehaviour
 {
-    protected float energyCost; // Energy cost unique to each ability
+    protected float energyCost; // to ensure each get a unique energy cost
 
     public Ability(float energyCost)
     {

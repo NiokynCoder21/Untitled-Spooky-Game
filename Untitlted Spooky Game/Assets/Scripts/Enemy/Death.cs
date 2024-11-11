@@ -7,9 +7,9 @@ public class Death : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player")) //if collide with object with player tag
         {
-            SceneManager.LoadScene("Lose", LoadSceneMode.Single);
+            SceneManager.LoadScene("SampleScene", LoadSceneMode.Single); //rest scence
         }
     }
 
