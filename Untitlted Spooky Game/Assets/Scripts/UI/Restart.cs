@@ -22,6 +22,22 @@ public class Restart : MonoBehaviour
         }
     }
 
+    public void onStart(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            StartGame();
+        }
+    }
+
+    public void onQuit(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            QuitGame();
+        }
+    }
+
     public void RespawnPlayer()
     {
         SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
@@ -30,5 +46,15 @@ public class Restart : MonoBehaviour
     public void GoMainMenu()
     {
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Tut", LoadSceneMode.Single);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
