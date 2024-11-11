@@ -32,11 +32,11 @@ public class PlayerEnegy : MonoBehaviour
 
     public void GainEnergy(float energy) //function for when the player gets energy
     {
-        currentEnergy += energy; //this increases energy from current energy and assigns the current energy
-        healthBar.SetHealth(currentEnergy); //set healthbar to current energy
         AudioSource audio = GetComponent<AudioSource>(); //get component audio source and store as audio
         audio.clip = bloodDrinkSound;
         audio.Play();
+        currentEnergy += energy; //this increases energy from current energy and assigns the current energy
+        healthBar.SetHealth(currentEnergy); //set healthbar to current energy
     }
 
     //Brakeys.(2020, Febuary 9). How to make a Health bar in Unity![Video] https://www.youtube.com/watch?v=BLfNP4Sc_iA&list=PLt1E2jJc5nDj6KQi6BVJElz3vqFmg-B8I&index=4 

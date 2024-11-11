@@ -65,14 +65,15 @@ public class EnemyAi : MonoBehaviour
 
     void PatrolUpdate()
     {
+
         if (CanSeePlayer()) //checks if the enemy can see player 
         {
-            currentState = EnemyState.Chase; //if can see player chase where player went 
+            currentState = EnemyState.Chase; //if can see player chase where player went
         }
 
         else
         {
-            if (agent.remainingDistance < 0.5f) //if the player is close to the waypoint set the next waypoint 
+            if (agent.remainingDistance < 0.5f) //if the enemy is close to the waypoint set the next waypoint 
             {
                 SetNextWaypoint();
             }  
