@@ -14,8 +14,21 @@ public class Restart : MonoBehaviour
         }
     }
 
+    public void onMainMenu(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            GoMainMenu();
+        }
+    }
+
     public void RespawnPlayer()
     {
         SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+    }
+
+    public void GoMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 }

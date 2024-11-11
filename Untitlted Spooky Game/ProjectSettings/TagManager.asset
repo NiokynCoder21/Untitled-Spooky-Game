@@ -12,6 +12,7 @@ TagManager:
   - Rat
   - RatDad
   - RabbitDad
+  - Win
   layers:
   - Default
   - TransparentFX

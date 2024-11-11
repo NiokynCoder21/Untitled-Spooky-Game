@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Kill : MonoBehaviour
 {
     public PlayerController controller;
     public GameObject killText;
     public GameObject player;
+
 
     public void OnTriggerEnter(Collider other)
     {
@@ -78,6 +80,11 @@ public class Kill : MonoBehaviour
             {
                 Destroy(rabbitParent.gameObject); // Destroy the specific enemy object, e.g., Enemy 3
             }
+        }
+
+        if (other.CompareTag("Winner"))
+        {
+            SceneManager.LoadScene("Win", LoadSceneMode.Single);
         }
     }
 
