@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GhostAbility : Ability
 {
-    public GhostAbility() : base(energyCost: 5f) { }
+    public GhostAbility() : base(energyCost: 0.7f) { }
 
     public override void Activate(GameObject player)
     {

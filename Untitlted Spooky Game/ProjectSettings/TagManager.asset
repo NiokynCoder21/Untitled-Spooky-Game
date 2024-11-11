@@ -10,6 +10,8 @@ TagManager:
   - Enemy
   - Rabbit
   - Rat
+  - RatDad
+  - RabbitDad
   layers:
   - Default
   - TransparentFX

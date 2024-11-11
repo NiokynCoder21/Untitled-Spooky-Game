@@ -9,6 +9,9 @@ public class AbilityController : MonoBehaviour
     public bool isInvisble = false;
     public GameObject detectionObject;
     public GameObject invisibleText;
+    public GameObject normalMode;
+    public GameObject ghostMode;
+    public GameObject invisibleMode;
 
     public void onGhostAbility(InputAction.CallbackContext context)
     {
@@ -68,26 +71,34 @@ public class AbilityController : MonoBehaviour
     public void InvisibleAbilityUse()
     {
         InvisibleAbility invisibility = new InvisibleAbility();
+        invisibility.Activate(gameObject);
         detectionObject.gameObject.SetActive(false);
-        invisibleText.gameObject.SetActive(true);
+        normalMode.gameObject.SetActive(false);
+        invisibleMode.gameObject.SetActive(true);
     }
     public void InvisibleAbilityNotUse()
     {
         InvisibleAbility invisibility = new InvisibleAbility();
+        invisibility.Disable(gameObject);
         detectionObject.gameObject.SetActive(true);
-        invisibleText.gameObject.SetActive(false);
+        normalMode.gameObject.SetActive(true);
+        invisibleMode.gameObject.SetActive(false);
     }
 
     public void GhostAbilityUse()
     {
         GhostAbility ghost = new GhostAbility();
         ghost.Activate(gameObject);
+        normalMode.gameObject.SetActive(false);
+        ghostMode.gameObject.SetActive(true);
     }
 
     public void GhostAbilityNotUse()
     {
         GhostAbility ghost = new GhostAbility();
         ghost.Disable(gameObject);
+        normalMode.gameObject.SetActive(true);
+        ghostMode.gameObject.SetActive(false);
     }
 
 }

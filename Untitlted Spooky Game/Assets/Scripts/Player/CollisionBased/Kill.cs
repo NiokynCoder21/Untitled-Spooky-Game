@@ -44,12 +44,40 @@ public class Kill : MonoBehaviour
         {
             Rat rat = new Rat();
             rat.ApplyEffect(player);
+
+            Transform ratParent = other.transform;
+
+            // Traverse up the hierarchy until we reach an object tagged as "Enemy"
+            while (ratParent != null && !ratParent.CompareTag("RatDad"))
+            {
+                ratParent = ratParent.parent;
+            }
+
+            // If we found an enemy parent, destroy it
+            if (ratParent != null)
+            {
+                Destroy(ratParent.gameObject); // Destroy the specific enemy object, e.g., Enemy 3
+            }
         }
 
         if (other.CompareTag("Rabbit"))
         {
             Rabbit rabbit = new Rabbit();
             rabbit.ApplyEffect(player);
+
+            Transform rabbitParent = other.transform;
+
+            // Traverse up the hierarchy until we reach an object tagged as "Enemy"
+            while (rabbitParent != null && !rabbitParent.CompareTag("RabbitDad"))
+            {
+                rabbitParent = rabbitParent.parent;
+            }
+
+            // If we found an enemy parent, destroy it
+            if (rabbitParent != null)
+            {
+                Destroy(rabbitParent.gameObject); // Destroy the specific enemy object, e.g., Enemy 3
+            }
         }
     }
 

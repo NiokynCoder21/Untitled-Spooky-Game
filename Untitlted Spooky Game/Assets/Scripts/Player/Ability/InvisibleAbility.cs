@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InvisibleAbility : Ability //make the player not visible
 {
-    public InvisibleAbility() : base(energyCost: 10f) { } // Set specific cost for invisibility
+    public InvisibleAbility() : base(energyCost: 0.5f) { } // Set specific cost for invisibility
 
     public override void Activate(GameObject player)
     {
