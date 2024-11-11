@@ -37,6 +37,14 @@ public class Restart : MonoBehaviour
             QuitGame();
         }
     }
+    
+    public void onContinue(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            ContinueGame();
+        }
+    }
 
     public void RespawnPlayer()
     {
@@ -51,6 +59,11 @@ public class Restart : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("Tut", LoadSceneMode.Single);
+    }
+
+    public void ContinueGame()
+    {
+        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
     }
 
     public void QuitGame()
