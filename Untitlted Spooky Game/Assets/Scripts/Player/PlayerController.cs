@@ -52,13 +52,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnCrouch(InputAction.CallbackContext context)
+   /* public void OnCrouch(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
             ToggleCrouch();
         }
-    }
+    }*/
 
     public void onVampireBite(InputAction.CallbackContext context)
     {
@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(velocityChange, ForceMode.VelocityChange); //applies force to the rigidbody ignoring its mass
     }
 
-    private void ToggleCrouch()
+    /*private void ToggleCrouch()
     {
         if (isCrouching)
         {
@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
             capsule.height = crouchHeight;
             isCrouching = true;
         }
-    }
+    }*/
 
 
     void NormalLook()
