@@ -122129,7 +122129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b741b2e450b4b4e8980d5c1742e68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnergy: 600
+  maxEnergy: 500
   currentEnergy: 0
   healthBar: {fileID: 6988020763736115675}
   bloodDrinkSound: {fileID: 8300000, guid: 71d428ee4224a8c41b5ec6614ddb34f6, type: 3}
@@ -122148,7 +122148,6 @@ MonoBehaviour:
   isGhost: 0
   isInvisble: 0
   detectionObject: {fileID: 8652424289475539230}
-  invisibleText: {fileID: 945539546}
   normalMode: {fileID: 832575517}
   ghostMode: {fileID: 1827299390}
   invisibleMode: {fileID: 1356975026}
@@ -155839,9 +155838,6 @@ MonoBehaviour:
   controllerSensitivty: 1
   currentSensitivity: 0
   maxForce: 1
-  normalHeight: 2
-  crouchHeight: 1
-  capsule: {fileID: 161670646192800637}
   enemyTurned: 0
   energy: {fileID: 1665748708}
   gainAmount: 50
